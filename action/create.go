@@ -53,10 +53,10 @@ func CreateProject(projectName string) error {
 			}
 
 			content := string(buf)
-			// Check if the file contains the string "".
+			// Check if the file contains the string originProjectName.
 			stringFound := strings.Contains(content, originProjectname)
 
-			// If the string is found, replace it with "jaylin".
+			// If the string is found, replace it with projectName.
 			if stringFound {
 				content = strings.Replace(content, originProjectname, projectName, -1)
 			}
@@ -66,6 +66,7 @@ func CreateProject(projectName string) error {
 				fmt.Printf("truncate file %s err: %s\n", path, err.Error())
 			}
 
+			// Write the content to the file
 			err = os.WriteFile(path, []byte(content), 0644)
 			if err != nil {
 				fmt.Printf("write file %s err: %s\n", path, err.Error())
