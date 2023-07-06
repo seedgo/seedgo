@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"seedgo/action"
+	"github.com/seedgo/seedgo/action"
 )
 
 var createType string

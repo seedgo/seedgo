@@ -36,7 +36,6 @@ func CreateProject(projectName string) error {
 		if err != nil {
 			return err
 		}
-		fmt.Println(info.Name())
 
 		if info.IsDir() {
 			if sliceContain(ignoreDireList, info.Name()) {
@@ -72,12 +71,12 @@ func CreateProject(projectName string) error {
 				fmt.Printf("write file %s err: %s\n", path, err.Error())
 			}
 		}
-		fmt.Println("finished create project: " + projectName)
 		return nil
 	})
 	if err != nil {
 		return err
 	}
 
+	fmt.Println("finished create project: " + projectName)
 	return err
 }

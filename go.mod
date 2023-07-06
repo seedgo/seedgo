@@ -1,3 +1,3 @@
-module seedgo
+module github.com/seedgo/seedgo
 
 go 1.20
