@@ -2,6 +2,7 @@ package action
 
 import (
 	"fmt"
+	"github.com/urfave/cli/v2"
 	"io"
 	"os"
 	"os/exec"
@@ -23,7 +24,12 @@ func sliceContain(l []string, k string) bool {
 	return false
 }
 
-func CreateProject(projectName string) error {
+func CreateProject(ctx *cli.Context) error {
+	projectName := ctx.Args().Get(0)
+	if len(projectName) == 0 {
+		fmt.Printf("please specifiy the new rojectName")
+		return nil
+	}
 	fmt.Println("creating project: " + projectName)
 	// 1. clone the repository
 	repo := "https://github.com/seedgo/seedgo-skeleton"

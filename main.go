@@ -1,28 +1,32 @@
 package main
 
 import (
-	"flag"
-	"fmt"
 	"github.com/seedgo/seedgo/action"
+	"github.com/urfave/cli/v2"
+	"log"
+	"os"
 )
 
-var createType string
-var createName string
-
-func init() {
-	flag.StringVar(&createType, "create", "project", "specify the create type: project")
-	flag.StringVar(&createName, "name", "", "specify the name")
-}
-
 func main() {
-	flag.Parse()
-	var err error
-	if createType == "project" {
-		err = action.CreateProject(createName)
+	app := &cli.App{
+		HelpName:  "seedgo - command line tool for seedgo golang framework",
+		UsageText: "seedgo create project [projectName]",
+		Commands: []*cli.Command{
+			{
+				Name:  "create",
+				Usage: "create project",
+				Subcommands: []*cli.Command{
+					{
+						Name:   "project",
+						Usage:  "create a project",
+						Action: action.CreateProject,
+					},
+				},
+			},
+		},
 	}
 
-	if err != nil {
-		fmt.Println(err.Error())
+	if err := app.Run(os.Args); err != nil {
+		log.Fatal(err)
 	}
-
 }
