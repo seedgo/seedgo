@@ -1,0 +1,42 @@
+server:
+  port: 6600
+  debug: false
+  
+datasource:
+  default:
+    driver: "mysql"
+    host: "localhost"
+    port: 3306
+    database: "seedgo"
+    username: "root"
+    password: "root"
+    charset: "utf8"
+    loc: "Local"
+  ds2:
+    driver: "postgres"
+    host: "localhost"
+    port: 5432
+    database: "seedgo"
+    username: "root"
+    password: "root"
+    sslmode: "disable"
+    timezone: "Asia/Shanghai"
+
+redis:
+  host: "localhost:6379"
+  password: "root"
+  db: 0
+
+logger:
+  console:
+    level: "info"
+    driver: "console"
+  file:
+    level: "info"
+    driver: "file"
+    filename: "./log/seedgo.log"
+    maxsize: 10
+    maxbackups: 2
+    maxage: 27
+    compress: true
+
